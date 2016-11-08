@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dynamically created page</title>
+
+    </head>
+    <body>
+
+        <script type="text/javascript">
+
+        var test = {
+
+            heading : "Тест по программированию",
+            questions: 3,
+
+            createHeading : function() {
+                var heading = document.createElement("h1");
+                document.body.appendChild(heading);
+                heading.innerText = this.heading;
+            },
+
+            createQuestionsList : function() {
+                var orderedList = document.createElement("ol");
+                for (var i = 0; i < this.questions; i++) {
+                    var listItem = document.createElement("li");
+                    orderedList.appendChild(listItem);
+                    listItem.innerText = "Вопрос №" + (i + 1);
+                    // var label = document.createElement("label");
+                    // var input = document.createElement("input");
+                    // input.type = "checkbox";
+                    // label.appendChild(input);
+                    // label.innerText = "Вариант ответа " + i;
+                    // listItem.appendChild(label);
+                }
+                document.body.appendChild(orderedList);
+            }
+
+
+        }
+
+        test.createHeading();
+        test.createQuestionsList();
+        // test.createSingleQuestion("Вопрос №1");
+
+        </script>
+    </body>
+</html>
