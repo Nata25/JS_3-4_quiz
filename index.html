@@ -5,6 +5,20 @@
         <title>Dynamically created page</title>
 
         <style media="screen">
+
+            body {
+                font-family: Arial, sans-serif;
+                color: #4690bb;
+            }
+
+            li {
+                margin: 10px;
+            }
+
+            label {
+                margin: 5px;
+            }
+
             .block {
                 display: block;
             }
@@ -30,7 +44,7 @@
                 document.forms[0].appendChild(heading);
             },
 
-            createQuestionsList : function(num) {
+            createQuestionsList : function() {
                 var orderedList = document.createElement("ol");
                 document.forms[0].appendChild(orderedList);
             },
@@ -55,14 +69,21 @@
                 var question = document.querySelector("ol li:nth-child(" + order + ")");
                 question.appendChild(label);
             },
+
+            createTest : function(heading, questions, variants) {
+                this.init();
+                this.addHeading(heading);
+                this.createQuestionsList(questions);
+                for (var i = 1; i <= questions; i++) {
+                    this.addQuestion("Вопрос №" + i);
+                    for (var j = 1; j <= variants; j++) {
+                        this.addAnswer(i, "q" + i, "Вариант ответа №" + j);
+                    }
+                }
+            }
         }
 
-        test.init();
-        test.addHeading("Тест по программированию");
-        test.createQuestionsList(3);
-        test.addQuestion("Вопрос №1");
-        test.addQuestion("Вопрос №2");
-        test.addAnswer(1, "q1", "Вариант ответа №1");
+        test.createTest("Тест по программированию", 3, 3);
 
         </script>
     </body>
