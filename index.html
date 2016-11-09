@@ -9,39 +9,55 @@
 
         <script type="text/javascript">
 
-        var test = {
+        function Test(heading, questions) {
+            this.heading = heading;
+            this.questions = questions;
+            var form = document.createElement('form');
+            this.container = form;
 
-            heading : "Тест по программированию",
-            questions: 3,
+            form.method = "post";
+            form.action = "#";
+            document.body.appendChild(this.container);
+            var heading = document.createElement("h1");
+            heading.innerText = this.heading;
+            form.appendChild(heading);
+        }
 
-            createHeading : function() {
-                var heading = document.createElement("h1");
-                document.body.appendChild(heading);
-                heading.innerText = this.heading;
-            },
+        var test = new Test("Тест по программированию", 3);
 
-            createQuestionsList : function() {
+
+        test.createQuestionsList = function() {
                 var orderedList = document.createElement("ol");
                 for (var i = 0; i < this.questions; i++) {
                     var listItem = document.createElement("li");
                     orderedList.appendChild(listItem);
-                    listItem.innerText = "Вопрос №" + (i + 1);
-                    // var label = document.createElement("label");
-                    // var input = document.createElement("input");
-                    // input.type = "checkbox";
-                    // label.appendChild(input);
-                    // label.innerText = "Вариант ответа " + i;
-                    // listItem.appendChild(label);
                 }
-                document.body.appendChild(orderedList);
+                this.container.appendChild(orderedList);
             }
 
-
+        test.createSingleQuestion = function(order) {
+            var listItem = document.querySelector('ol li:nth-child(' + (order) + ')');
+            listItem.innerText = "Вопрос №" + order;
         }
 
-        test.createHeading();
+        test.createAnswerVariant = function(node, name, text) {
+            var input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = name;
+            input.value = text;
+            var question = document.createTextNode(text);
+            var label = document.createElement("label");
+            label.appendChild(input);
+            label.appendChild(question);
+            this.container.appendChild(label);
+        }
+
+
         test.createQuestionsList();
-        // test.createSingleQuestion("Вопрос №1");
+        test.createSingleQuestion(1);
+        test.createSingleQuestion(2);
+        test.createSingleQuestion(3);
+        test.createAnswerVariant("q1", "Вариант ответа №1");
 
         </script>
     </body>
