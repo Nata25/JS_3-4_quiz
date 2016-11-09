@@ -11,6 +11,10 @@
                 color: #4690bb;
             }
 
+            h1 {
+                text-align: center;
+            }
+
             li {
                 margin: 10px;
             }
@@ -70,6 +74,13 @@
                 question.appendChild(label);
             },
 
+            addSubmitButton : function() {
+                var submit = document.createElement("input");
+                submit.type = "submit";
+                submit.value = "Проверить мои результаты";
+                document.forms[0].appendChild(submit);
+            },
+
             createTest : function(heading, questions, variants) {
                 this.init();
                 this.addHeading(heading);
@@ -80,6 +91,7 @@
                         this.addAnswer(i, "q" + i, "Вариант ответа №" + j);
                     }
                 }
+                this.addSubmitButton();
             }
         }
 
