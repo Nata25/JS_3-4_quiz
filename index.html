@@ -3,29 +3,23 @@
     <head>
         <meta charset="utf-8">
         <title>Dynamically created page</title>
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+        <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
         <style media="screen">
 
             body {
-                font-family: Arial, sans-serif;
                 color: #4690bb;
             }
 
-            h1 {
-                text-align: center;
-            }
-
-            li {
+            form {
                 margin: 10px;
             }
 
-            label {
-                margin: 5px;
+            input {
+                margin-right: 5px;
             }
 
-            .block {
-                display: block;
-            }
         </style>
 
     </head>
@@ -39,6 +33,7 @@
                 var form = document.createElement('form');
                 form.method = "post";
                 form.action = "#";
+                form.className = "pure-form";
                 document.body.appendChild(form);
             },
 
@@ -69,7 +64,7 @@
                 var label = document.createElement("label");
                 label.appendChild(input);
                 label.appendChild(answer);
-                label.className = "block";
+                label.className = "pure-checkbox";
                 var question = document.querySelector("ol li:nth-child(" + order + ")");
                 question.appendChild(label);
             },
@@ -78,6 +73,7 @@
                 var submit = document.createElement("input");
                 submit.type = "submit";
                 submit.value = "Проверить мои результаты";
+                submit.className = "pure-button pure-button-primary";
                 document.forms[0].appendChild(submit);
             },
 
